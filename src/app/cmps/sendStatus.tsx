@@ -5,7 +5,7 @@ interface IPatrolData {
   isStatusOk: boolean;
   description?: string;
 };
-
+//todo: add a section to description, add a saveing function, design.
 
 const SendStatus = () => {
   const [formData, setFormData] = useState<IPatrolData>({ names: '', isStatusOk: false });

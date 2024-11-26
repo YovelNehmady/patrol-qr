@@ -4,6 +4,8 @@ import { checkCode } from "./services";
 import { useEffect, useState } from "react";
 import SendStatus from "./cmps/sendStatus";
 
+//todo: need to add a loading page.
+
 export default function Home() {
   const [allowedToSendStatus, setAllowedToSendStatus] = useState(false);
   const searchParams = useSearchParams();

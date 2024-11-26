@@ -19,7 +19,7 @@ export default function Home() {
   return (
     <div>
       <h1 >
-        כוח אריאל- פטרול תקין
+         סטטוס פטרול כוח אריאל
       </h1>
 
       {allowedToSendStatus ?

@@ -3,14 +3,11 @@ import React from 'react'
 
 const Header = () => {
   return (
-    <div className='flex flex-shrink flex-row-reverse '>
-      <Link className='pl-2' href={"/login"} >
+    <div className='header full'>
+      <Link className='login-cmp' href={"/login"} >
       התחברות
       </Link>
-      <Link href={"/qr"} >
-      QR
-      </Link>
-      <p className='logo flex-1'> כח אריאל</p>
+      <p className='logo'>כוח אריאל-ביחד ננצח</p>
     </div>
   )
 }

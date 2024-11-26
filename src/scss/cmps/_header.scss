@@ -1,0 +1,32 @@
+.header {
+    border-bottom: .5px solid rgb(84 124 164);
+    z-index: 999;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    .logo {
+        font-size: 25px;
+    }
+
+    .login-cmp {
+        position: absolute;
+        left: 80%;
+    }
+
+    .nav {
+        margin-inline: auto;
+
+        .navigation,
+        .call-btn {
+            display: none;
+        }
+
+        .logo {
+            height: 75px;
+            width: 85px;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    }
+}

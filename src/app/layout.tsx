@@ -14,7 +14,7 @@ const Rubik_Moonrocks_init = Rubik_Moonrocks({
 
 const Amatic_SC_init = Amatic_SC({
   subsets:['hebrew'],
-  weight:'400',
+  weight:'700',
   variable:'--font-Amatic_SC'
 })
 

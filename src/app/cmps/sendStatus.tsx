@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import WarningModal from './warningModal';
 interface IPatrolData {
   names: string;
   isStatusOk: boolean;
@@ -9,6 +10,7 @@ interface IPatrolData {
 
 const SendStatus = ({ }) => {
   const [formData, setFormData] = useState<IPatrolData>({ names: '', isStatusOk: false });
+  const [isWarningModal, setIsWarningModal] = useState<boolean>(false);
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
@@ -22,8 +24,18 @@ const SendStatus = ({ }) => {
   };
 
   const handleSubmit = (e: any) => {
-    e.preventDefault();
-    console.log("Form Data:", formData);
+    try {
+      e.preventDefault();
+      console.log("Form Data:", formData);
+      if (!formData.isStatusOk) {
+        setIsWarningModal(true);
+      } else {
+        //todo: adding a service that connecting to the DB and saving the status.
+        //todo: redirect to a new page and delete the router history.
+      }
+    } catch (error) {
+
+    }
   };
   return (
     <section className='send-status'>
@@ -83,6 +95,9 @@ const SendStatus = ({ }) => {
         </div>
 
       </form>
+
+      {/* {true && <WarningModal/>} */}
+      {isWarningModal && <WarningModal setIsWarningModal={setIsWarningModal} />}
     </section>
   );
 };

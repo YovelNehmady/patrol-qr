@@ -1,11 +1,11 @@
 'use client';
 import { useRouter, useSearchParams } from "next/navigation";
-import { checkCode } from "./services";
+import { checkCode } from "../services";
 import { useEffect, useState } from "react";
-import SendStatus from "./cmps/sendStatus";
-import LoaderSvg from "./cmps/loading";
+import SendStatus from "../cmps/sendStatus";
+import LoaderSvg from "../cmps/loading";
 
-export default function Home() {
+const SendStatus = ()=> {
   const [allowedToSendStatus, setAllowedToSendStatus] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
@@ -46,3 +46,5 @@ export default function Home() {
   </>
   );
 }
+
+export default SendStatus;

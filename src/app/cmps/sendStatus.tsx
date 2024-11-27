@@ -5,9 +5,9 @@ interface IPatrolData {
   isStatusOk: boolean;
   description?: string;
 };
-//todo: add a section to description, add a saveing function, design.
+//todo:  add a saveing function.
 
-const SendStatus = () => {
+const SendStatus = ({ }) => {
   const [formData, setFormData] = useState<IPatrolData>({ names: '', isStatusOk: false });
 
   const handleChange = (e: any) => {
@@ -27,30 +27,61 @@ const SendStatus = () => {
   };
   return (
     <section className='send-status'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id='statusForm'>
 
-        <label htmlFor="isStatusOk" >
-          סטטוס תקין
-        </label>
-        <input
-          type="checkbox"
-          id="isStatusOk"
-          name="isStatusOk"
-          // value={formData.isStatusOk}
-          onChange={handleChange}
-        />
+        <div className='names-container'>
+          <label htmlFor="names" >
+            *מבצעי הפטרול
+          </label>
+          <input
+            size={18}
+            autoFocus={true}
+            type="text"
+            id="names"
+            name="names"
+            value={formData.names}
+            onChange={handleChange}
+            required={true}
+          />
+        </div>
 
-        <label htmlFor="names" >
-          מבצעי הפטרול
-        </label>
-        <input
-          type="text"
-          id="names"
-          name="names"
-          value={formData.names}
-          onChange={handleChange}
-        />
-        <button type='submit'>send</button>
+        <div className='description-container'>
+          <label htmlFor="description" >
+            הערות נוספות
+            <p>
+              (רשות)
+              עד 50 תווים
+            </p>
+          </label>
+          <textarea
+            maxLength={50}
+            wrap='soft'
+            rows={4}
+            cols={20}
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            form='statusForm'
+          ></textarea>
+        </div>
+
+        <div className='is-status-ok-and-btn-container'>
+          <div>
+            <label htmlFor="isStatusOk" >
+              סטטוס תקין
+            </label>
+            <input
+              type="checkbox"
+              id="isStatusOk"
+              name="isStatusOk"
+              onChange={handleChange}
+              value={'off'}
+            />
+          </div>
+          <button type='submit'>send</button>
+        </div>
+
       </form>
     </section>
   );

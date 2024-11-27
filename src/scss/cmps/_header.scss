@@ -1,5 +1,6 @@
 .header {
-    border-bottom: .5px solid rgb(84 124 164);
+    box-shadow: 0 4px 2px -2px #502F4C;
+
     z-index: 999;
     align-items: center;
     display: flex;
@@ -7,6 +8,7 @@
 
     .logo {
         font-size: 25px;
+        font-family: var(--font-rubik-moonrocks);
     }
 
     .login-cmp {
@@ -14,19 +16,4 @@
         left: 80%;
     }
 
-    .nav {
-        margin-inline: auto;
-
-        .navigation,
-        .call-btn {
-            display: none;
-        }
-
-        .logo {
-            height: 75px;
-            width: 85px;
-            background-size: cover;
-            background-repeat: no-repeat;
-        }
-    }
 }

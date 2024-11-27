@@ -2,8 +2,8 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div >
-      powered by Yovel the king!
+    <div style={{color:'#fff'}} >
+      powered by Yovel Nehmady
     </div>
   )
 }

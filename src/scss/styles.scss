@@ -1,20 +1,20 @@
 
 /* Basics */
-@import 'basics/layouts';
-@import 'basics/base';
-@import 'basics/helpers';
+@use 'basics/layouts';
+@use 'basics/base';
+@use 'basics/helpers';
 
 /* Setup */
-@import 'setup/variables';
-@import 'setup/mixins';
+@use 'setup/variables';
+@use 'setup/mixins';
 
 /* pages */
-@import 'pages/qr';
+@use 'pages/qr';
 
 
 /* cmps */ 
-@import 'cmps/header';
-@import 'cmps/send-status';
-@import 'cmps/loader';
-@import 'cmps/warning-modal';
-@import 'cmps/login-cmp';
+@use 'cmps/header';
+@use 'cmps/send-status';
+@use 'cmps/loader';
+@use 'cmps/warning-modal';
+@use 'cmps/login-cmp';

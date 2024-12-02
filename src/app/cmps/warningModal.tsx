@@ -1,13 +1,13 @@
 import React from 'react';
 
-function WarningModal({ setIsWarningModal }: any) {
+function WarningModal({ setIsWarningModal, savePatrol }: any) {
     return (
         <div className='warning-modal-container'>
 
             <div className='warning-modal'>
                 <p>
                     שים לב כי לא סימנת שהפטרול תקין,
-                     האם להמשיך ולשלוח שהפטרול לא תקין?
+                    האם להמשיך ולשלוח שהפטרול לא תקין?
                 </p>
                 <div className='btn-container'>
                     <button
@@ -18,7 +18,7 @@ function WarningModal({ setIsWarningModal }: any) {
 
                     <button
                         onClick={() => {
-
+                            savePatrol();
                         }}
                         className='ok-btn'>המשך</button>
                 </div>

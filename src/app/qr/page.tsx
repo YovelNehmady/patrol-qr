@@ -1,158 +1,52 @@
-'use client'
+'use client';
+import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
+import { changeQrCode, getQrCode } from '../services';
+import LoaderSvg from '../cmps/loading';
 
-import React, { useState } from 'react'
+function Qr() {
+    const QR_BASE_URL = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http://www.google.com?code=';
+    const [imgSrc, setImgSrc] = useState('');
 
-// function qr() {
-//   return (
-//     <div>
-//       מייצא qr
-//     </div>
-//   )
-// }
-const Form = () => {
-  const [formData, setFormData] = useState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      address: "",
-      age: "",
-      gender: "",
-      interests: [],
-  });
+    useEffect(() => {
+        (async () => {
+            const code = await getQrCode();
+            setImgSrc(`${QR_BASE_URL}${code}`);
+        })();
+    }, []);
 
-  const handleChange = (e:any) => {
-      const { name, value, type, checked, options } = e.target;
-      if (type === "checkbox") {
-          const selectedOptions = Array.from(options)
-              .filter((option:any) => option.selected)
-              .map((option:any) => option.value);
-          setFormData({ ...formData, [name]: selectedOptions });
-      } else if (type === "radio" && checked) {
-          setFormData({ ...formData, [name]: value });
-      } else {
-          setFormData({ ...formData, [name]: value });
-      }
-  };
+    const generateNewQrCode = async () => {
+        setImgSrc('');
+        const newCode = await changeQrCode();
+        console.log('newCode',newCode);
+        
+        setImgSrc(`${QR_BASE_URL}${newCode}`);
+    };
 
-  const handleSubmit = (e:any) => {
-      e.preventDefault();
-      console.log("Form Data:", formData);
-  };
+    return (<>
+        <h2 className='printable only-print'>כח אריאל ביחד ננצח</h2>
+        <p className='printable only-print'>נא לסרוק את הקוד בתום ביצוע הפטרול בכדי לשלוח את סטטוס הפטרול</p>
+        {imgSrc ?
+            <div className='printable qr-page'>
+                <div className='printable img-container '>
+                    <Image className='printable'
+                        src={imgSrc}
+                        alt="QR Code"
+                        width={200}
+                        height={200}
+                    />
+                </div>
+                <div className='qr-action-btn-container'>
+                    <button className='print-btn' onClick={window.print}> הדפס קוד QR</button>
+                    <button className='new-qr-btn' onClick={generateNewQrCode}>QR חדש</button>
+                </div>
 
-  return (
-      <form  onSubmit={handleSubmit}>
-          <label htmlFor="firstName" >
-              First Name:
-          </label>
-          <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
-              onChange={handleChange}
-              />
+            </div>
+            :
+            <LoaderSvg />}
 
-          <label htmlFor="lastName">
-              Last Name:
-          </label>
-          <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleChange}
-              />
+    </>
+    );
+}
 
-          <label htmlFor="email" >
-              Email:
-          </label>
-          <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-               />
-
-          <label htmlFor="address" >
-              Address:
-          </label>
-          <textarea
-              id="address"
-              name="address"
-              value={formData.address}
-              onChange={handleChange}
-              />
-
-          <label htmlFor="age" >
-              Age:
-          </label>
-          <input
-              type="number"
-              id="age"
-              name="age"
-              value={formData.age}
-              onChange={handleChange}
-               />
-
-          <label >Gender:</label>
-
-          <span style={{ display: "flex" }}>
-              <label
-                  style={{ width: "20px" }}
-                  htmlFor="male"
-                  >
-                  Male
-              </label>
-              <input
-                  type="radio"
-                  id="male"
-                  name="gender"
-                  value="male"
-                  checked={formData.gender === "male"}
-                  onChange={handleChange}
-                   />
-          </span>
-          <span style={{ display: "flex" }}>
-              <label
-                  style={{ width: "20px" }}
-                  htmlFor="female"
-                  >
-                  Female
-              </label>
-              <input
-                  type="checkbox"
-                  id="female"
-                  name="gender"
-                  value="female"
-                  checked={formData.gender === "female"}
-                  onChange={handleChange}
-                   />
-          </span>
-
-          <label htmlFor="interests" >
-              Interests:
-          </label>
-          <select
-              id="interests"
-              name="interests"
-              multiple
-              value={formData.interests}
-              onChange={handleChange}
-              >
-              <option value="coding">Coding</option>
-              <option value="reading">Reading</option>
-              <option value="music">Music</option>
-          </select>
-
-          <button type="submit" >
-              Submit
-          </button>
-          <button type="reset" >
-              Reset
-          </button>
-      </form>
-  );
-};
-
-export default Form
+export default Qr;

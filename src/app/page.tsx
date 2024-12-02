@@ -2,47 +2,37 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { checkCode } from "./services";
 import { useEffect, useState } from "react";
-import SendStatus from "./cmps/sendStatus";
 import LoaderSvg from "./cmps/loading";
 
 export default function Home() {
-  const [allowedToSendStatus, setAllowedToSendStatus] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   const searchParams = useSearchParams();
+  const router = useRouter();
+
   const checkValidCode = async () => {
-    return await checkCode(searchParams.values().toString());
+
+    return await checkCode(searchParams.get('code') || '');
   };
 
-  const router = useRouter()
   useEffect(() => {
     try {
       (async () => {
-        setAllowedToSendStatus(await checkValidCode());
+        const isAllowedToSendStatus = (await checkValidCode());
+        if (isAllowedToSendStatus) {
+          await fetch('/api/set-cookie');
+          router.replace('/status-form');
+        }
+        else {
+          router.replace('/scan-again');
+        }
+        console.log(isAllowedToSendStatus);
+
       })();
     } catch (error) {
       console.log('error with checking status', error);
-    } finally {
-      setIsLoading(false);
-      router.replace('/ppp')
     }
   }, []);
 
-  return (<>
-    <div>
-      <h1 >
-        סטטוס פטרול כוח אריאל
-      </h1>
-      {allowedToSendStatus ?
-        <div>
-          <SendStatus />
-        </div>
-        :
-        <div>
-          לא ניתן לשלוח סטטוס פטרול, סרוק שנית        </div>}
-    </div>
-    {isLoading &&
-      <LoaderSvg />
-    }
-  </>
+  return (
+    <LoaderSvg />
   );
 }

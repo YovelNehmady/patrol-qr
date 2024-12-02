@@ -1,0 +1,15 @@
+.qr-page{
+    margin-block: auto;
+    margin-inline: auto;
+    .img-container {
+        padding: 25px;
+        box-shadow: 0px 0px 12px #502F4C;
+        border-radius: 5px;
+    }
+
+    .qr-action-btn-container {
+        padding-block: 25px;
+        display: flex;
+        justify-content: space-between;
+    }
+}

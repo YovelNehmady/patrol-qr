@@ -1,16 +1,17 @@
 'use client';
 import React, { useState } from 'react';
 import WarningModal from './warningModal';
-interface IPatrolData {
-  names: string;
-  isStatusOk: boolean;
-  description?: string;
-};
-//todo:  add a saveing function.
+import { IFormData } from '@/models';
+import { sendForm } from '../services';
+import { useRouter } from 'next/navigation';
+import Loading from './loading';
 
 const SendStatus = ({ }) => {
-  const [formData, setFormData] = useState<IPatrolData>({ names: '', isStatusOk: false });
+  const router = useRouter();
+
+  const [formData, setFormData] = useState<IFormData>({ names: '', isStatusOk: false });
   const [isWarningModal, setIsWarningModal] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleChange = (e: any) => {
     const { name, value, type, checked } = e.target;
@@ -24,20 +25,28 @@ const SendStatus = ({ }) => {
   };
 
   const handleSubmit = (e: any) => {
-    try {
-      e.preventDefault();
-      console.log("Form Data:", formData);
-      if (!formData.isStatusOk) {
-        setIsWarningModal(true);
-      } else {
-        //todo: adding a service that connecting to the DB and saving the status.
-        //todo: redirect to a new page and delete the router history.
-      }
-    } catch (error) {
-
+    e.preventDefault();
+    if (!formData.isStatusOk) {
+      setIsWarningModal(true);
+    } else {
+      savePatrol();
     }
   };
-  return (
+
+  const savePatrol = async () => {
+    try {
+      setIsLoading(true);
+      await sendForm(formData);
+      router.replace('after-status');
+    } catch (error) {
+      console.log(error);
+      router.replace('scan-again');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (<>
     <section className='send-status'>
       <form onSubmit={handleSubmit} id='statusForm'>
 
@@ -91,14 +100,16 @@ const SendStatus = ({ }) => {
               value={'off'}
             />
           </div>
-          <button type='submit'>send</button>
+          <button type='submit'>שלח</button>
         </div>
 
       </form>
 
       {/* {true && <WarningModal/>} */}
-      {isWarningModal && <WarningModal setIsWarningModal={setIsWarningModal} />}
+      {isWarningModal && <WarningModal setIsWarningModal={setIsWarningModal} savePatrol={savePatrol} />}
     </section>
+    {isLoading && <Loading />}
+  </>
   );
 };
 

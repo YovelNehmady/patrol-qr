@@ -1,5 +1,5 @@
 * {
-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -41,7 +41,7 @@ button {
     transition: background-color .5s;
 
 
-    &:hover{
+    &:hover {
         background-color: #502f4c;
         color: #b088ac;
         border: 1.5px solid #b088ac;
@@ -51,7 +51,7 @@ button {
 }
 
 input::placeholder {
-    font-family:var(--font-Amatic_SC);
+    font-family: var(--font-Amatic_SC);
     font-size: 22px;
 }
 
@@ -61,11 +61,46 @@ textarea:focus-visible {
     outline: none;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     font-size: 22px;
+    background-color: #3e3061;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+label {
+    p {
+        font-size: 18px;
+    }
+}
+
+chackbox {
     background-color: #3e3061;
 }
 
-chackbox{
-    background-color:#3e3061 ;
+@media print {
+    /* Hide all elements by default */
+    body * {
+      display: none;
+    }
+    body{
+        background-color: #fff;
+    }
+  
+    /* Allow specific elements to display */
+    .printable {
+        display: block !important;
+        color: black !important; /* Ensure text is visible */
+        background: white !important; 
+        /* Ensure a contrasting background */
+        margin-block: 35px;
+  }
+
+}
+
+.only-print {
+    display: none;
 }

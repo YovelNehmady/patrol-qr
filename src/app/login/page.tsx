@@ -5,7 +5,7 @@ const login = () => {
 
     return (<div>
         <h2>
-            התחברות    </h2>
+            כוח אריאל- התחברות    </h2>
         <LoginCmp />
     </div>
     );

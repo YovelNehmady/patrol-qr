@@ -9,6 +9,7 @@
 @import 'setup/mixins';
 
 /* pages */
+@import 'pages/qr';
 
 
 /* cmps */ 
@@ -16,3 +17,4 @@
 @import 'cmps/send-status';
 @import 'cmps/loader';
 @import 'cmps/warning-modal';
+@import 'cmps/login-cmp';

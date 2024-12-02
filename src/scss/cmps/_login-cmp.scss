@@ -1,0 +1,24 @@
+.login-cmp-container {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-block: 40px;
+    padding: 25px;
+    box-shadow: 0px 0px 12px #502F4C;
+    border-radius: 5px;
+
+    form {
+        display: inherit;
+        flex-direction: inherit;
+        gap: inherit;
+        width: fit-content;
+        margin-inline: auto;
+        .email-container,
+        .password-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+}

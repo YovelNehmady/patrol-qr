@@ -2,7 +2,7 @@ import React from 'react'
 
 function Footer() {
   return (
-    <div style={{color:'#fff'}} >
+    <div className='printable' style={{color:'#fff'}} >
       powered by Yovel Nehmady
     </div>
   )

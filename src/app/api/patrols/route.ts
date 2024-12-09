@@ -2,11 +2,11 @@ import { NextResponse } from "next/server";
 import clientPromise from "@/lib/mongodb";
 
 
-export async function POST(req:Request) {
+export async function POST(req: Request) {
     try {
         const patrolData = await req.json(); // Parse the incoming JSON body
         const client = await clientPromise;
-        const db = client.db(process.env.DB_NAME); // Replace with your DB name
+        const db = client.db(process.env.DB_NAME);
         const collection = db.collection(process.env.DB_PATROLS_COLLECTION!);
 
         // Insert the new patrol into the collection
@@ -21,10 +21,18 @@ export async function POST(req:Request) {
         );
     } catch (error) {
         console.error(error);
-        throw new Error (`cant save the patrol ${error}`)
+        throw new Error(`cant save the patrol ${error}`);
     }
 }
 
-export async function GET(req: Request) {
-  
+export async function GET() {
+    const client = await clientPromise;
+    const db = client.db(process.env.DB_NAME);
+
+    // Fetch documents from a collection
+    const collection = await db.collection(process.env.DB_PATROLS_COLLECTION!).find({}).sort({ createdAt: -1 }).toArray();
+    return NextResponse.json(
+        { data: collection },
+        { status: 200 }
+    );
 }

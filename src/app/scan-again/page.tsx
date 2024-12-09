@@ -1,16 +1,12 @@
-import { useRouter } from 'next/compat/router';
-import React, { useEffect, useState } from 'react'
+import React from 'react';
 
 function ScanAgain() {
 
   return (
-    <div>
-      scan again 
+    <div className='scan-again-page'>
+      סרוק שנית את הברקוד על מנת לשלוח דיווח פטרול
     </div>
-  )
+  );
 }
 
-
-
-
-export default ScanAgain
+export default ScanAgain;

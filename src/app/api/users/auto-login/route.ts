@@ -5,13 +5,10 @@ import jwt from 'jsonwebtoken';
 import { ILoginData } from "@/models";
 
 export async function POST(req: Request) {
-    const JWT_SECRET = process.env.JWT_SECRET!;
 
     try {
-        // Fetch documents from a collection
-
-        const data: ILoginData = await req.json();
-        const { username, password } = data;
+        const {userToken} = await req.json();
+       const {username , password} =  jwt.decode(userToken) as ILoginData;
 
         if (!username || !password) {
             return NextResponse.json({ error: 'Username and password are required' }, { status: 400 });
@@ -32,12 +29,7 @@ export async function POST(req: Request) {
             return NextResponse.json({ error: 'Invalid username or password' }, { status: 401 });
         }
 
-        // Generate JWT
-        const token = jwt.sign(
-            { username: user.username, password: password },
-            JWT_SECRET
-        );
-        return NextResponse.json({ data: token }, { status: 200 });
+        return NextResponse.json({ data: {isLoggedIn : true} }, { status: 200 });
     } catch (error) {
         console.error('Login error:', error);
         return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });

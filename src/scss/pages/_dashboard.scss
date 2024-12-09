@@ -1,0 +1,21 @@
+.dashboard-page {
+    display: grid;
+    gap: 25px;
+    padding: 16px;
+    grid-template-columns: repeat(2, 90px);
+    height: fit-content;
+    align-self: center;
+    margin-inline: auto;
+
+    section {
+        height: 90px;
+        width: 90px;
+        align-content: center;
+        box-shadow: 0px 0px 12px #502F4C;
+        border-radius: 5px;
+        cursor: pointer;
+        &:hover {
+            background-color: #502F4C;
+        }
+    }
+}

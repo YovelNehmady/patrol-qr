@@ -1,6 +1,9 @@
 import React from 'react';
-
-function WarningModal({ setIsWarningModal, savePatrol }: any) {
+interface IWarningProps {
+    setIsWarningModal: React.Dispatch<React.SetStateAction<boolean>>;
+    savePatrol: () => Promise<void>;
+}
+const WarningModal: React.FC<IWarningProps> = ({ setIsWarningModal, savePatrol }) => {
     return (
         <div className='warning-modal-container'>
 
@@ -25,6 +28,6 @@ function WarningModal({ setIsWarningModal, savePatrol }: any) {
             </div>
         </div>
     );
-}
+};
 
 export default WarningModal;

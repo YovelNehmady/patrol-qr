@@ -1,13 +1,8 @@
+
 export interface ILoginData {
-    email: string;
+    username: string;
     password: string;
 }
-
-export interface ILoginForm {
-    email: string;
-    password: string;
-}
-
 export interface IFormData {
     names: string;
     isStatusOk: boolean;
@@ -18,5 +13,12 @@ export interface IPatrolData {
     names: string;
     isStatusOk: boolean;
     description?: string;
-    createdAt : Date
+    createdAt : Date | string
+};
+export interface IPatrolDataFromDB {
+    names: string;
+    isStatusOk: boolean;
+    description?: string;
+    createdAt :Date| string;
+    _id: string
 };

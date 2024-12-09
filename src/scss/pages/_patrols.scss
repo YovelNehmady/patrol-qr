@@ -1,0 +1,78 @@
+/* Base styles for mobile-first layout */
+.patrol-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+  
+  .patrol-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    height: fit-content;
+  }
+  
+  .patrol-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .status {
+    font-weight: bold;
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: #fff;
+  }
+  
+  .status.ok {
+    background-color: #4caf50; /* Green */
+  }
+  
+  .status.not-ok {
+    background-color: #f44336; /* Red */
+  }
+  
+  .timestamp {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  .patrol-members {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  
+  .patrol-description {
+    font-size: 14px;
+    color: #333;
+    font-style: italic;
+  }
+  
+  /* Medium-sized devices (tablets, portrait) */
+  @media (min-width: 768px) {
+    .patrol-list {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+  
+    .patrol-card {
+      width: 48%; /* Two items per row */
+    }
+  }
+  
+  /* Large devices (desktops) */
+  @media (min-width: 1024px) {
+    .patrol-card {
+      width: 23%; /* Four items per row */
+    }
+  }
+  

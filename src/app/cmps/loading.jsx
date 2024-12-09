@@ -11,6 +11,7 @@ const LoaderSvg = (props) => (
         shapeRendering: "auto",
         display: "block",
         background: "rgb(15, 5, 41)",
+        
       }}
       xmlnsXlink="http://www.w3.org/1999/xlink"
       {...props}

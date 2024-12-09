@@ -3,7 +3,7 @@ import SendStatus from "../cmps/sendStatus";
 import { useRouter } from 'next/navigation';
 import { useEffect } from "react";
 
-const StatusForm = async () => {
+const StatusForm = () => {
   const router = useRouter();
 
   useEffect(() => {

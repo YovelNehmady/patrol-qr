@@ -5,7 +5,7 @@ import { changeQrCode, getQrCode } from '../services';
 import LoaderSvg from '../cmps/loading';
 
 function Qr() {
-    const QR_BASE_URL = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=http://www.google.com?code=';
+    const QR_BASE_URL = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://qr-rho-henna.vercel.app?code=';
     const [imgSrc, setImgSrc] = useState('');
 
     useEffect(() => {

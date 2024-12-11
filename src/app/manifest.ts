@@ -1,11 +1,14 @@
-{
+import type { MetadataRoute } from 'next'
+ 
+export default function manifest(): MetadataRoute.Manifest {
+  return {
     "name": "כוח אריאל- פטרול",
     "short_name": "פטרול",
-    "description": "אםליקציה לניהול פטרולים. כוח אריאל שדה תימן",
-    "start_url": "/",
+    "description": "אפליקציה לניהול פטרולים. כוח אריאל שדה תימן",
+    "start_url": "../login",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#000000",
+    "background_color": "#0f0529",
+    "theme_color": "#0f0529",
     "icons": [
         {
             "src": "/icons/icon-192x192.png",
@@ -23,4 +26,5 @@
             "type": "image/png"
         }
     ]
+}
 }

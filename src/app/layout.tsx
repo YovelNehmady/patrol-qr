@@ -39,7 +39,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <link rel="manifest" href="/manifest.json" />
+        <link rel="manifest" href="/manifest.ts" />
         <meta name="theme-color" content="#000000" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="icon" sizes="192x192" href="/icons/icon-192x192.png" />

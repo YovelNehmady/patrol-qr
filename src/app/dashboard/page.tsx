@@ -23,7 +23,9 @@ function Dashboard() {
         router.push('/qr');
       }}>QR</section>
       <section onClick={()=>router.push('/patrols')}>היסטוריית פטרולים</section>
-      <section>פתיחת התראות</section>
+      <section  onClick={() => {
+        router.push('/notifications');
+      }} >פתיחת התראות</section>
       <section onClick={doLogout}>התנתקות</section>
     </div>
   );

@@ -5,7 +5,11 @@ const runtimeCaching = require("next-pwa/cache");
 const withPWA = require('next-pwa')({
   dest: 'public', // This is where the service worker file is placed
   register: true, // Automatically register the service worker
-  skipWaiting: true, // Force the new service worker to take control immediately
+  skipWaiting: true,
+   // Force the new service worker to take control immediately
+
+   disable: process.env.NODE_ENV === 'development', // Disable in development
+
 		runtimeCaching,
     buildExcludes: [/app-build-manifest\.json$/],
 	
